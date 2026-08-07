@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-navy-950 text-slate-100 antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(56, 89, 189, 0.15), transparent),
+      radial-gradient(ellipse 60% 50% at 80% 50%, rgba(139, 92, 246, 0.08), transparent);
+    background-attachment: fixed;
+  }
+
+  html:not(.dark) body {
+    @apply bg-slate-50 text-slate-900;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.08), transparent),
+      radial-gradient(ellipse 60% 50% at 80% 50%, rgba(139, 92, 246, 0.05), transparent);
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-slate-800/40 backdrop-blur-xl border border-white/5 rounded-2xl;
+  }
+
+  html:not(.dark) .glass {
+    @apply bg-white/70 border-slate-200/60;
+  }
+
+  .glass-card {
+    @apply bg-slate-800/40 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl;
+  }
+
+  html:not(.dark) .glass-card {
+    @apply bg-white/70 border-slate-200/60 shadow-lg;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-sky-400 via-blue-500 to-violet-500 bg-clip-text text-transparent;
+  }
+
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.4), rgba(139, 92, 246, 0.4));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100, 116, 139, 0.3) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 116, 139, 0.3);
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(100, 116, 139, 0.5);
+  }
+}
+
+/* Syntax highlighter overrides */
+.code-block {
+  font-family: 'JetBrains Mono', Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+}
